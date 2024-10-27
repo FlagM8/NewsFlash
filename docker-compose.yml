@@ -4,8 +4,9 @@ services:
   web:
     build: .
     ports:
-      - "5000:5000"
+      - "5001:5000"
     volumes:
-      - .:/app
+      - .:/usr/src/app
     environment:
       - FLASK_ENV=development
+      - FLASK_APP=app.py
