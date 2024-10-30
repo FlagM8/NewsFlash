@@ -11,5 +11,5 @@ EXPOSE 5001
 
 COPY . .
 
-CMD [ "python", "-m", "flask", "run" ]
+CMD [ "python", "-m", "flask", "run", "--host=0.0.0.0", "--port=5001" ]
  
