@@ -7,14 +7,21 @@ WORKDIR /app
 # Copy package.json and package-lock.json to install dependencies
 COPY package*.json ./
 
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y nodejs \
+    npm             
 # Install the dependencies
 RUN npm install
+RUN npm install @vue/cli -g
+
 
 # Copy the rest of the application code to the container
 COPY . .
 
 # Build the Vue.js project for production
 RUN npm run build
+CMD npm start
+#CMD npm run serve
 
 # Serve the build using a minimal server (nginx)
 FROM nginx:alpine
@@ -25,5 +32,5 @@ COPY --from=build-stage /app/dist /usr/share/nginx/html
 EXPOSE 80
 
 # Run nginx server
-#CMD ["nginx", "-g", "daemon off;"]
-CMD npm run serve
+CMD ["nginx", "-g", "daemon off;"]
+

@@ -1,12 +1,36 @@
 version: '3'
 
 services:
-  web:
-    build: .
+  code:
+    build:
+      context: ./services/code
+      dockerfile: Dockerfile
     ports:
       - "5001:5001"
     volumes:
-      - .:/usr/src/app
+       - ./services/code:/usr/src/app
     environment:
       - FLASK_ENV=development
       - FLASK_APP=code/app.py
+    networks:
+      - app-network
+
+  vue-frontend:
+    build:
+      context: ./services/vue-frontend
+      dockerfile: Dockerfile
+    volumes:
+      - './services/frontend/ui:/app'
+      - '/app/node_modules'
+    ports:
+      - "8080:80"
+    environment:
+      - NODE_ENV=development
+      - BACKEND_SERVICE_URL=http://127.0.0.1:5001
+      - VUE_GATEWAY_URL=http://127.0.0.1:8000
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
