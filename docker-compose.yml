@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   code:
@@ -20,8 +20,8 @@ services:
       context: ./services/vue-frontend
       dockerfile: Dockerfile
     volumes:
-      - './services/frontend/ui:/app'
-      - '/app/node_modules'
+      - "./services/frontend/ui:/app"
+      - "/app/node_modules"
     ports:
       - "8080:80"
     environment:
