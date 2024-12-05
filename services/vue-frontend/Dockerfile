@@ -1,5 +1,5 @@
 # Use the official Node.js image to build the frontend
-FROM node:16 as build-stage
+FROM node:18 as build-stage
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -13,6 +13,7 @@ RUN apt-get update && apt-get upgrade -y && \
 # Install the dependencies
 RUN npm install
 RUN npm install @vue/cli -g
+RUN npm install axios
 
 
 # Copy the rest of the application code to the container
