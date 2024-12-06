@@ -18,9 +18,9 @@ services:
     depends_on:
       - mongodb
 
-  vue-frontend:
+  frontend:
     build:
-      context: ./services/vue-frontend
+      context: ./services/frontend
       dockerfile: Dockerfile
     volumes:
       - "./services/frontend/ui:/app"
