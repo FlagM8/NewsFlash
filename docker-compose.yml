@@ -1,3 +1,5 @@
+version: "3"
+
 services:
   code:
     build:
@@ -6,7 +8,7 @@ services:
     ports:
       - "5001:5001"
     volumes:
-       - ./services/code:/usr/src/app
+      - ./services/code:/usr/src/app
     environment:
       - FLASK_ENV=development
       - FLASK_APP=code/app.py
@@ -21,8 +23,8 @@ services:
       context: ./services/vue-frontend
       dockerfile: Dockerfile
     volumes:
-      - './services/frontend/ui:/app'
-      - '/app/node_modules'
+      - "./services/frontend/ui:/app"
+      - "/app/node_modules"
     ports:
       - "8080:80"
     environment:
