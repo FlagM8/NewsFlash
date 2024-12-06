@@ -10,8 +10,11 @@ services:
     environment:
       - FLASK_ENV=development
       - FLASK_APP=code/app.py
+      - MONGO_URI=mongodb://root:example@mongodb:27017/your_database_name
     networks:
       - app-network
+    depends_on:
+      - mongodb
 
   vue-frontend:
     build:
@@ -29,6 +32,22 @@ services:
     networks:
       - app-network
 
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - app-network
+
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  mongodb_data:
