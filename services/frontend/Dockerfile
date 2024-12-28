@@ -14,6 +14,7 @@ RUN apt-get update && apt-get upgrade -y && \
 RUN npm install
 RUN npm install @vue/cli -g
 RUN npm install axios
+RUN npm install dotenv
 
 
 # Copy the rest of the application code to the container
