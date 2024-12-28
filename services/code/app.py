@@ -1,12 +1,8 @@
-# app.py
-from flask import Flask, render_template
+from flask import Flask
+from pymongo import MongoClient
+from config import MONGO_URI, SECRET_KEY
 
 app = Flask(__name__)
-
-@app.route('/')
-@app.route("/home")
-def home_page():
-    return render_template('index.html')
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port="5001",debug=True)
+app.config['SECRET_KEY'] = SECRET_KEY
+client = MongoClient(MONGO_URI)
+db = client["your_database_name"]
