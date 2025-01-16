@@ -2,13 +2,17 @@
 
 FROM python:3
 
-WORKDIR /usr/src/app
+WORKDIR /code
 
+# Install dependencies
 COPY requirements.txt ./
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 5001
-
+# Copy application code
 COPY . .
 
-CMD [ "python", "-m", "flask", "run", "--host=0.0.0.0", "--port=5001" ]
+# Expose Flask port
+EXPOSE 5001
+
+# Default command to run the application
+CMD ["python", "main.py"]
