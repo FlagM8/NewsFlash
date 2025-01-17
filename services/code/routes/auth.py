@@ -10,7 +10,7 @@ import utils
 bcrypt = Bcrypt()
 #auth = Blueprint("auth", __name__)
 
-#ORS(auth, resources={r"/*": {"origins": "http://localhost:8080"}}, supports_credentials=True)
+#CORS(auth, resources={r"/*": {"origins": "http://localhost:8080"}}, supports_credentials=True)
 #app.register_blueprint(auth, url_prefix="/auth")
 
 """
